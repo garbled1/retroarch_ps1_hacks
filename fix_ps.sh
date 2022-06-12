@@ -6,7 +6,7 @@ FLIST=$(find . -name \*.bin -type f | grep -v _ns)
 
 for file in $FLIST
 do
-    SERIAL=$(strings ${file} | grep "^BOOT.*= .*S.US" | sed -e 's/.*\(S.US\).\([0-9][0-9][0-9]\).\([0-9][0-9]\).*/\1-\2\3/' | tail -1)
+    SERIAL=$(strings ${file} | grep "^BOOT.*=.*S.US" | sed -e 's/.*\(S.US\).\([0-9][0-9][0-9]\).\([0-9][0-9]\).*/\1-\2\3/' | tail -1)
     if [ -z "${SERIAL}" ]; then
 	SERIAL=$(strings ${file} | grep S.US-[0-9][0-9][0-9][0-9][0-9] | sed -e 's/.*\(S.US-[0-9][0-9][0-9][0-9][0-9]\).*/\1/' | tail -1)
     fi
